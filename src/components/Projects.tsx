@@ -154,6 +154,26 @@ export function Projects({
         </div>
 
         <div className="filter-row" aria-label="Project categories">
+          <label className="mobile-filter-select">
+            <span className="visually-hidden">Filter projects by category</span>
+            <select
+              value={activeFilter}
+              onChange={(event) => {
+                const filter = filters.find((option) => option === event.target.value)
+                if (filter) {
+                  handleFilterChange(filter)
+                }
+              }}
+              aria-label="Filter projects by category"
+            >
+              {filters.map((filter) => (
+                <option key={filter} value={filter}>
+                  {filter}
+                </option>
+              ))}
+            </select>
+            <span className="mobile-filter-chevron" aria-hidden="true">⌄</span>
+          </label>
           {filters.map((filter) => (
             <button
               key={filter}
